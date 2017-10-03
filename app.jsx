@@ -154,7 +154,7 @@ const Trivia = ({ model }) => {
             <section className="container">
                 <div className="text-center abc-game">
                     <div  className='text-left'><img className='btn-direction' src="img/right.svg" alt=""/></div>
-                    <div  className='text-left'><img className='btn-direction' src="img/left.svg" onClick={()=>{this.prev()}} alt=""/></div>
+                    <div  className='text-left'><img className='btn-direction' src="img/left.svg" onClick={()=>{model.prev()}} alt=""/></div>
                     <div>{showImage}</div>
                     <p className='text-left'>{model.count} of 5 answered</p>
                  

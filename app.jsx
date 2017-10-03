@@ -25,16 +25,19 @@ class Model {
             this.complete= false;
             this.solution= false;
             this.init= true;
+
       }
       subscribe(render) {
             this.render = render;
       }
       inform() {
+            console.log(this.count)
             this.render();
       }
-      next (index) {
+      next (e,index) {
             if (this.count<4) {
                   this.answers.push(index);
+                  this.count= this.count +1;
             }else if (this.count ==4){
                   this.answers.push(index);
                   console.log(this.answers);
@@ -43,22 +46,38 @@ class Model {
             if (index == 0) {
                   this.answersCorrect.push(index);
             }
-            this.count= this.count +1;
+            this.changeState ();      
+            this.inform();
+      }
+
+      changeState () {
+            if (this.count<=4){
+                  this.question = this.questions[this.count].question;
+                  this.choices= this.questions[this.count].choices;
+                  this.id= this.questions[this.count].id;
+                  this.image = this.images[this.count]
+            } else {
+                  this.image = this.images[5]
+            }
       }
 
       changeStateComplete () {
             this.init= false;
             this.complete= true;
+            this.count = 5;
+            this.inform();
       }
 
       showSolution () {
             this.solution= true;
             this.complete= false;
+            this.inform();
       }
 
       prev () {
             this.count= this.count-1;
             this.answers.pop();
+            this.inform();
       }
 
       again () {
@@ -69,6 +88,11 @@ class Model {
             this.complete= false;
             this.solution= false;
             this.init= true;
+            this.question = this.questions[this.count].question;
+            this.choices= this.questions[this.count].choices;
+            this.id= this.questions[this.count].id;
+            this.image = this.images[this.count]
+            this.inform();
       }
 
 }
@@ -77,15 +101,15 @@ const Trivia = ({ model }) => {
       const showImage = <img src={model.image} alt=""/>
       const letters = ['img/a.gif' ,'img/b.gif' ,'img/c.gif' ];
       const showChoices = model.choices.map((choice,index)=>{
-            console.log(model.choices)
-      return (<div key={model.id} className='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
-                  <button className='btn-question' onClick={()=>model.next(index)}>
-                  <img className='letter' src={letters[index]} alt=""/>
-                  <p>{choice}</p>
-                  <div className='div-check'></div>
-                  <div className='div-option'></div>
-                  </button>
-            </div>);
+            return (<div key={index} className='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
+                        <button className='btn-question' onClick={(e)=>model.next(e,index)}>
+                        <img className='letter' src={letters[index]} alt=""/>
+                        <p>{choice}</p>
+                        <div className='div-check'></div>
+                        <div className='div-option'></div>
+                        </button>
+                  </div>
+            );
       });
 
       const showQuestions = (
@@ -99,7 +123,7 @@ const Trivia = ({ model }) => {
 
       const answersUser = model.answers.map((answer,index)=>{
             return (
-            <div key={model.id}>
+            <div key={index}>
                   <p>{model.questions[index].question}: <b>{model.questions[index].choices[answer]}</b></p>
             </div>
             );

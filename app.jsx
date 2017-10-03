@@ -77,6 +77,7 @@ class Model {
       prev() {
             this.count = this.count - 1;
             this.answers.pop();
+            this.changeState();
             this.inform();
       }
 

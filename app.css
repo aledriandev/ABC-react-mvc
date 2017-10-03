@@ -122,10 +122,10 @@ body {
     opacity: 1;
 }
 
-.abc-game>img{
-    width: 20%;
-}
-
 .btn-direction{
     width: 40px;
+}
+
+.img-vehicle{
+    height: 200px;
 }

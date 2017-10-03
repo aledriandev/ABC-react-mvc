@@ -1,6 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Cuprum:400,700|Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+/*  */
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: #FAEDE4; 
-  font-family: arial;
-  color: #4A4E7E;
-  text-transform: uppercase;
+    background-color: #FAE4D8 !important;
+    font-family: 'Lato';
+}
+
+.letter{
+    width: 40px;
+}
+
+.choices{
+    padding: 50px;
+    position: relative;
+    /* display: flex;
+    justify-content: space-around; */
+}
+
+.btn-question{
+    width: 100%;
+    padding: 0 5px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    font-family: 'Oswald';
+    font-size: 130%;
+    font-weight: bold;
+    margin:5px 0;
+    position: relative;
+    background-color: #EFEFFD;
+    color: #323269;
+    border-radius: 5px;
+    border: 3px solid #323269;
+}
+
+.btn-question:hover{
+    background-color: #C5C5EE;
+}
+
+.btn-question .select{
+    background-color: #8C8CAD;
+}
+
+.div-option{
+    width: 100%;
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.btn-answer{
+    background-color: rgb(216, 144, 51);
+}
+
+.check{
+    width: 35px;
+}
+
+.div-check{
+    width: 35px;
+}
+
+.btn-question p{
+    padding-top: 3%;
+    width: 65%;
+}
+
+.correct{
+    color: #4F864F;
+}
+
+.incorrect{
+    color: #B63838;
+}
+
+.btn-quiz{
+    background-color: #323269;
+    height: 50px;
+    font-family: 'Oswald';
+    font-size: 160%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.btn-quiz:hover{
+    background-color: #d2d0da;
+}
+
+.bg-white{
+    margin-top: -25px;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.social{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 200px;
+    height: 30px;
+}
+
+.circle img{
+    opacity: 0.6;
+    width: 50px;
+}
+
+.circle img:hover{
+    opacity: 1;
+}
+
+.abc-game>img{
+    width: 20%;
+}
+
+.btn-direction{
+    width: 40px;
 }

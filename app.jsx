@@ -19,7 +19,7 @@ class Model {
             this.question = this.questions[this.count].question;
             this.choices= this.questions[this.count].choices;
             this.id= this.questions[this.count].id;
-            this.imge = this.images[this.count]
+            this.image = this.images[this.count]
             this.answers= [];
             this.answersCorrect= [];
             this.complete= false;
@@ -77,16 +77,16 @@ const Trivia = ({ model }) => {
       const showImage = <img src={model.image} alt=""/>
       const letters = ['img/a.gif' ,'img/b.gif' ,'img/c.gif' ];
       const showChoices = model.choices.map((choice,index)=>{
-            return (<div key={model.id} className='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
-                        <button className='btn-question' onClick={()=>modal.next(index)}>
-                        <img className='letter' src={letters[index]} alt=""/>
-                        <p>{choice}</p>
-                        <div className='div-check'></div>
-                        <div className='div-option'></div>
-                        </button>
-                  </div>);
-            });
-      };
+            console.log(model.choices)
+      return (<div key={model.id} className='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
+                  <button className='btn-question' onClick={()=>model.next(index)}>
+                  <img className='letter' src={letters[index]} alt=""/>
+                  <p>{choice}</p>
+                  <div className='div-check'></div>
+                  <div className='div-option'></div>
+                  </button>
+            </div>);
+      });
 
       const showQuestions = (
                   <div>
@@ -108,12 +108,12 @@ const Trivia = ({ model }) => {
       const showAnswers = (
                   <div>
                   <h3>Here are you answers:</h3>
-                  {tanswersUser}
+                  {answersUser}
                   <button className='btn-quiz' onClick={e=>model.showSolution(e)}>Submit</button>
                   </div>
             );
 
-      const solution = modal.answers.map((answer,index)=>{
+      const solution = model.answers.map((answer,index)=>{
             if( answer == 0){
             return <p className='correct' key={index}>
                         {model.questions[index].question}: <b>{model.questions[index].choices[parseInt(answer)]}</b>
@@ -127,20 +127,34 @@ const Trivia = ({ model }) => {
       });
 
       return (
-            <div>
-                  <h1> {title} </h1>
-                  <form
-                        onSubmit={e => {
-                              e.preventDefault();
-                              model.addTodo(model.inputValue);
-                        }}
-                  >
-                        <input onChange={e => (model.inputValue = e.target.value)} />
-                        <button type="submit">Add Item</button>
-                  </form>
-                  <ol> {items} </ol>
-            </div>
-      );
+            <section className="container">
+                <div className="text-center abc-game">
+                    <div  className='text-left'><img className='btn-direction' src="img/right.svg" alt=""/></div>
+                    <div  className='text-left'><img className='btn-direction' src="img/left.svg" onClick={()=>{this.prev()}} alt=""/></div>
+                    <div>{showImage}</div>
+                    <p className='text-left'>{model.count} of 5 answered</p>
+                 
+                    <div className="bg-white text-center game">
+                        {model.init&&showQuestions}
+                        {model.complete&&showAnswers}
+                        {model.solution&&<div>
+                            <h3>Respuestas correctas</h3>
+                            <h4>{model.answersCorrect.length} de 5</h4>
+                            {solution}
+                            <button className='btn-quiz' onClick={(e)=>{model.again(e)}}>Again</button>
+                        </div>}
+                        <div className="social">
+                            <div className='circle'><img src="img/fb.png" alt=""/></div>
+                            <div className='circle'><img src="img/tw.png" alt=""/></div>
+                            <div className='circle'><img src="img/g+.png" alt=""/></div>
+                        </div>
+                    </div>
+                
+                    <div className="bg-white text-center result"></div>
+                    <div className="bg-white text-center again"></div>
+                </div>
+            </section>
+        );
 };
 
 let model = new Model();

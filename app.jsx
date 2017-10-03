@@ -101,7 +101,7 @@ const Trivia = ({ model }) => {
       const showImage = <img className="img-vehicle"  src={model.image} alt=""/>
       const letters = ['img/a.gif' ,'img/b.gif' ,'img/c.gif' ];
       const showChoices = model.choices.map((choice,index)=>{
-            return (<div key={index} className='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
+            return (<div key={index} className='col-lg-4 col-md-4'>
                         <button className='btn-question' onClick={(e)=>model.next(e,index)}>
                         <img className='letter' src={letters[index]} alt=""/>
                         <p>{choice}</p>
